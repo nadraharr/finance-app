@@ -1,4 +1,4 @@
-<h1>Reports#report_by_dates</h1>
+<h1>Reports#report_by_category</h1>
 <div class="col-6">
   <canvas id="myChart"></canvas>
 </div>
@@ -7,13 +7,18 @@
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
-    type: 'line',
+    type: 'pie',
     data: {
       labels: <%= raw @labels %>,
       datasets: [{
-        label: '# of Votes',
+        label: 'My First Dataset',
         data: <%= raw @data %>,
-        borderWidth: 1
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
       }]
     }
   });

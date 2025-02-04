@@ -1,8 +1,9 @@
 <h1>Reports generator</h1>
 <div class="col-6">
-  <%= form_with url: reports_report_by_dates_path, method: :get, data: {turbo: false} do |f| %>
+  <%= form_with url: reports_generate_report_path, method: :get, data: {turbo: false} do |f| %>
     <%= f.date_field :start %>
     <%= f.date_field :finish %>
+    <%= f.collection_check_boxes :categories, Category.all, :id, :name %>
     <%= f.submit "By dates" %>
     <%= f.submit "By Categories" %>
     <%= f.submit "clear", :type => "reset" %>
