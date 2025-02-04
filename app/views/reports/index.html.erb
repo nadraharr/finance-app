@@ -1,4 +1,10 @@
-<h1>Reports#index</h1>
-<p>Find me in app/views/reports/index.html.erb</p>
-<%= link_to 'by_categories', reports_report_by_category_path %>
-<%= link_to 'by_dates', reports_report_by_dates_path %>
+<h1>Reports generator</h1>
+<div class="col-6">
+  <%= form_with url: reports_report_by_dates_path, method: :get, data: {turbo: false} do |f| %>
+    <%= f.date_field :start %>
+    <%= f.date_field :finish %>
+    <%= f.submit "By dates" %>
+    <%= f.submit "By Categories" %>
+    <%= f.submit "clear", :type => "reset" %>
+  <% end %>
+</div>

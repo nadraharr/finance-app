@@ -1,6 +1,4 @@
 class ReportsController < ApplicationController
-  before_action :set_operations, except: [:index]
-
   def index
   end
 
@@ -8,11 +6,12 @@ class ReportsController < ApplicationController
   end
 
   def report_by_dates
-  end
-
-  private
-
-  def set_operations
-    @operations = Operation.all #use filters
+    start_date = params[:start]
+    finish_date = params[:finish]
+    operations = Operation.where(odate: start_date..finish_date)
+                          .group("DATE(odate)")
+                          .sum(:amount)
+    @labels = operations.keys.map(&:to_s)
+    @data = operations.values
   end
 end
