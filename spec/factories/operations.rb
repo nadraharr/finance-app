@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :operation do
     category
-    description { "MyString" }
-    odate { "2025-02-05 16:54:17" }
-    amount { "9.99" }
+    description { Faker::Lorem.sentence }
+    odate { Faker::Time.backward(days: 14, period: :evening) }
+    amount { Faker::Number.decimal(l_digits: 2) }
   end
 end

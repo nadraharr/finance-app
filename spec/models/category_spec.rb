@@ -7,6 +7,7 @@ RSpec.describe Category, type: :model do
   #     expect(category).not_to be_valid
   #   end
   # end
+  subject(:category) { build(:category) }
 
   describe "associations" do
     it { should have_many(:operations) }
