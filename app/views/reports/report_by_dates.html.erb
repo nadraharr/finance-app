@@ -9,10 +9,10 @@
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: <%= raw @labels %>,
+      labels: <%= @labels.to_json.html_safe %>,
       datasets: [{
         label: '# of Votes',
-        data: <%= raw @data %>,
+        data: <%= @data.to_json.html_safe %>,
         borderWidth: 1
       }]
     }

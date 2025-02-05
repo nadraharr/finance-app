@@ -9,10 +9,10 @@
   new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: <%= raw @labels %>,
+      labels: <%= @labels.to_json.html_safe %>,
       datasets: [{
         label: 'My First Dataset',
-        data: <%= raw @data %>,
+        data: <%= @data.to_json.html_safe %>,
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)',
