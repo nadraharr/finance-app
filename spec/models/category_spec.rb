@@ -1,5 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    category = Category.new(name: "", description: "")
+    it "should validate presence of name" do
+      expect(category).not_to be_valid
+    end
+  end
 end

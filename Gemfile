@@ -51,6 +51,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails", "~> 7.0.0"
+  gem "factory_bot_rails", "~> 6.4", ">= 6.4.4"
+  gem "faker", "~> 3.5", ">= 3.5.1"
 end
 
 group :development do
@@ -62,4 +64,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 6.4"
 end
