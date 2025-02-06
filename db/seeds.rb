@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+10.times do
+  Category.find_or_create_by!(
+    name: Faker::Commerce.unique.department,
+    description: Faker::Lorem.sentence,
+  )
+end
+
+100.times do
+  Operation.find_or_create_by!(
+    amount: Faker::Commerce.price,
+    odate: Faker::Time.backward(days: 14, period: :evening),
+    description: Faker::Lorem.sentence,
+    category_id: Category.pluck(:id).sample,
+  )
+end

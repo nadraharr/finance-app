@@ -3,6 +3,6 @@ FactoryBot.define do
     category
     description { Faker::Lorem.sentence }
     odate { Faker::Time.backward(days: 14, period: :evening) }
-    amount { Faker::Number.decimal(l_digits: 2) }
+    amount { Faker::Commerce.price }
   end
 end
