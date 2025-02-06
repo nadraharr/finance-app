@@ -1,11 +1,27 @@
-<h1>Reports generator</h1>
-<div class="col-6">
-  <%= form_with url: reports_generate_report_path, method: :get, data: {turbo: false} do |f| %>
-    <%= f.date_field :start %>
-    <%= f.date_field :finish %>
-    <%= f.collection_check_boxes :categories, Category.all, :id, :name %>
-    <%= f.submit "By dates" %>
-    <%= f.submit "By Categories" %>
-    <%= f.submit "clear", :type => "reset" %>
-  <% end %>
+<h1 class="my-4 text-center">Reports Generator</h1>
+<div class="container d-flex justify-content-center">
+  <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
+    <%= form_with url: reports_generate_report_path, method: :get, data: { turbo: false } do |f| %>
+      <div class="mb-3">
+        <%= f.label :start, class: "form-label" %>
+        <%= f.date_field :start, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :finish, class: "form-label" %>
+        <%= f.date_field :finish, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :categories, class: "form-label" %>
+        <div class="d-flex gap-2">
+          <%= f.collection_check_boxes :categories, Category.all, :id, :name %>
+        </div>
+      </div>
+      <div class="d-grid gap-2 mb-3">
+        <%= f.submit "By dates", class: "btn btn-primary" %>
+      </div>
+      <div class="d-grid gap-2">
+        <%= f.submit "By Categories", class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
 </div>

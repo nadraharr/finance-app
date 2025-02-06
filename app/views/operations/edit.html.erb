@@ -1,12 +1,7 @@
 <% content_for :title, "Editing operation" %>
-
-<h1>Editing operation</h1>
-
+<h1 class="my-4 text-center">Editing operation</h1>
 <%= render "form", operation: @operation %>
-
 <br>
-
-<div>
-  <%= link_to "Show this operation", @operation %> |
-  <%= link_to "Back to operations", operations_path %>
+<div class="mt-3 text-center">
+  <%= link_to "Back to operations", operations_path, class: "btn btn-secondary" %>
 </div>

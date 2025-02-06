@@ -1,31 +1,37 @@
-<%= form_with(model: operation) do |form| %>
-  <% if operation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
-      <ul>
-        <% operation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
+<div class="container d-flex justify-content-center">
+  <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
+    <%= form_with(model: operation, local: true, class: "needs-validation") do |form| %>
+      <% if operation.errors.any? %>
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">
+            <%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:
+          </h4>
+          <ul>
+            <% operation.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="mb-3">
+        <%= form.label :amount, class: "form-label" %>
+        <%= form.text_field :amount, class: "form-control", placeholder: "Enter amount" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :odate, "Date", class: "form-label" %>
+        <%= form.date_field :odate, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_field :description, class: "form-control", placeholder: "Enter description" %>
+      </div>
+      <div class="mb-4">
+        <%= form.label :category_id, "Category", class: "form-label" %>
+        <%= form.collection_select :category_id, Category.order(:name), :id, :name, {}, class: "form-select" %>
+      </div>
+      <div class="d-grid gap-2">
+        <%= form.submit "Save Operation", class: "btn btn-success" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= form.label :odate, style: "display: block" %>
-    <%= form.date_field :odate %>
-  </div>
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-  <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :name %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
