@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 <% content_for :title, "Operations" %>
-<h1 class="mb-4">Operations</h1>
+<div class="my-3 d-flex align-items-center gap-4">
+  <h1>Operations</h1>
+  |
+  <%= link_to "New operation", new_operation_path, class: "btn btn-success" %>
+</div>
 <table class="table table-striped table-bordered">
   <thead class="table-dark">
     <tr>
@@ -17,6 +21,4 @@
     <% end %>
   </tbody>
 </table>
-<div class="mt-4">
-  <%= link_to "New operation", new_operation_path, class: "btn btn-success" %>
-</div>
+<%= paginate @operations %>
