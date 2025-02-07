@@ -4,16 +4,16 @@
     <%= form_with url: reports_generate_report_path, method: :get, data: { turbo: false } do |f| %>
       <div class="mb-3">
         <%= f.label :start, class: "form-label" %>
-        <%= f.date_field :start, class: "form-control" %>
+        <%= f.date_field :start, class: "form-control", required: true %>
       </div>
       <div class="mb-3">
         <%= f.label :finish, class: "form-label" %>
-        <%= f.date_field :finish, class: "form-control" %>
+        <%= f.date_field :finish, class: "form-control", required: true %>
       </div>
       <div class="mb-3">
         <%= f.label :categories, class: "form-label" %>
         <div class="d-flex gap-2">
-          <%= f.collection_check_boxes :categories, Category.all, :id, :name %>
+          <%= f.collection_select :categories, Category.all, :id, :name, { multiple: true }, { class: "form-select"} %>
         </div>
       </div>
       <div class="d-grid gap-2 mb-3">
