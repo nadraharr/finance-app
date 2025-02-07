@@ -3,7 +3,7 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.all.page(params[:page])
+    @operations = Operation.page(params[:page])
   end
 
   # GET /operations/1 or /operations/1.json
@@ -66,6 +66,6 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.expect(operation: [ :amount, :odate, :description, :category_id ])
+    params.expect(operation: [:amount, :odate, :description, :category_id])
   end
 end

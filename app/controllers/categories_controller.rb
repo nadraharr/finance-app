@@ -25,10 +25,10 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: "Category was successfully created." }
+        format.html { redirect_to categories_path, notice: "Category was successfully created." }
         format.json { render :show, status: :created, location: @category }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to categories_path, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -38,10 +38,10 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: "Category was successfully updated." }
+        format.html { redirect_to categories_path, notice: "Category was successfully updated." }
         format.json { render :show, status: :ok, location: @category }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to categories_path, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -66,6 +66,6 @@ class CategoriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def category_params
-    params.expect(category: [ :name, :description ])
+    params.expect(category: [:name, :description])
   end
 end

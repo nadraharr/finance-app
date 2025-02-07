@@ -3,7 +3,7 @@
 <div class="my-3 d-flex align-items-center gap-4">
   <h1>Categories</h1>
   |
-  <%= link_to "New category", new_category_path, class: "btn btn-success" %>
+  <%= render "new" %>
 </div>
 <table class="table table-striped table-bordered">
   <thead class="table-dark">
@@ -14,9 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @categories.each do |category| %>
-      <%= render category %>
-    <% end %>
+    <%= render @categories %>
   </tbody>
 </table>
 <%= paginate @categories %>

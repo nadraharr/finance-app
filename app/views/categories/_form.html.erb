@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-center">
-  <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
-    <%= form_with(model: category, local: true, class: "needs-validation") do |form| %>
+  <div class="card " style="width: 100%; border: none">
+    <%= form_with model: category, class: "needs-validation" do |form| %>
       <% if category.errors.any? %>
         <div class="alert alert-danger">
           <h4 class="alert-heading">
@@ -17,11 +17,11 @@
         <%= form.label :name, class: "form-label" %>
         <%= form.text_field :name, class: "form-control", placeholder: "Enter category name" %>
       </div>
-      <div class="mb-3">
+      <div class="mb-4">
         <%= form.label :description, class: "form-label" %>
         <%= form.text_field :description, class: "form-control", placeholder: "Enter description" %>
       </div>
-      <div class="d-grid gap-2">
+      <div class="d-grid">
         <%= form.submit "Save Category", class: "btn btn-success" %>
       </div>
     <% end %>
