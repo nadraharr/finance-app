@@ -28,19 +28,19 @@ RSpec.describe "Categories", type: :request do
   end
 
   describe "create" do
-    context "valid params" do
+    context "with valid params" do
       it "should create category" do
         valid_params = attributes_for(:category)
         expect { post categories_path, params: { category: valid_params } }.to change { Category.count }.by(1)
-        expect(response).to redirect_to category_path(Category.last)
+        expect(response).to redirect_to categories_path
       end
     end
 
-    context "invalid params" do
+    context "with invalid params" do
       it "should not create category" do
         invalid_params = attributes_for(:category, name: "")
         expect { post categories_path, params: { category: invalid_params } }.to_not change { Category.count }
-        expect(response).to render_template(:new)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -54,21 +54,21 @@ RSpec.describe "Categories", type: :request do
   end
 
   describe "update" do
-    context "valid params" do
+    context "with valid params" do
       it "should update category" do
         valid_params = { name: "Meds" }
         patch category_path(category), params: { category: valid_params }
         expect(category.reload.name).to eq("Meds")
-        expect(response).to redirect_to(category_path(category))
+        expect(response).to redirect_to(categories_path)
       end
     end
 
-    context "invalid params" do
+    context "with invalid params" do
       it "should not update category" do
         invalid_params = { name: "" }
         patch category_path(category), params: { category: invalid_params }
         expect(category.reload.name).to eq("Groceries")
-        expect(response).to render_template(:edit)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
