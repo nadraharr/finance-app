@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
-  has_many :operations
+  belongs_to :user
+  has_many :operations, dependent: :nullify
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 end

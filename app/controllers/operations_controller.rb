@@ -3,7 +3,7 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.page(params[:page])
+    @operations = current_user.operations.page(params[:page])
   end
 
   # GET /operations/1 or /operations/1.json
@@ -21,7 +21,7 @@ class OperationsController < ApplicationController
 
   # POST /operations or /operations.json
   def create
-    @operation = Operation.new(operation_params)
+    @operation = current_user.operations.build(operation_params)
 
     respond_to do |format|
       if @operation.save
