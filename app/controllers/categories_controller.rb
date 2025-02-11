@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :authorize_category
 
   # GET /categories or /categories.json
   def index
@@ -12,7 +13,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    @category = current_user.category.build
   end
 
   # GET /categories/1/edit
@@ -67,5 +68,9 @@ class CategoriesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def category_params
     params.expect(category: [ :name, :description ])
+  end
+
+  def authorize_category
+    authorize(@category || Category)
   end
 end
