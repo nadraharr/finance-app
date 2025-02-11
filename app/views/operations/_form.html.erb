@@ -15,7 +15,7 @@
       <% end %>
       <div class="mb-3">
         <%= form.label :amount, class: "form-label" %>
-        <%= form.text_field :amount, class: "form-control", placeholder: "Enter amount" %>
+        <%= form.number_field :amount, class: "form-control", placeholder: "Enter amount" %>
       </div>
       <div class="mb-3">
         <%= form.label :odate, "Date", class: "form-label" %>
@@ -27,7 +27,7 @@
       </div>
       <div class="mb-4">
         <%= form.label :category_id, "Category", class: "form-label" %>
-        <%= form.collection_select :category_id, Category.order(:name), :id, :name, {}, class: "form-select" %>
+        <%= form.collection_select :category_id, @categories, :id, :name, { include_blank: "" }, class: "form-select" %>
       </div>
       <div class="d-grid gap-2">
         <%= form.submit "Save Operation", class: "btn btn-success" %>

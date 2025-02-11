@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[ show edit update destroy ]
-  before_action :authorize_operation, except: %i[ new create ]
+  before_action :authorize_operation
 
   # GET /operations or /operations.json
   def index
@@ -14,7 +14,7 @@ class OperationsController < ApplicationController
   # GET /operations/new
   def new
     @operation = current_user.operations.build
-    authorize_operation
+    @categories = current_user.categories
   end
 
   # GET /operations/1/edit
@@ -24,7 +24,6 @@ class OperationsController < ApplicationController
   # POST /operations or /operations.json
   def create
     @operation = current_user.operations.build(operation_params)
-    authorize_operation
 
     respond_to do |format|
       if @operation.save

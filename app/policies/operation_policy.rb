@@ -8,7 +8,7 @@ class OperationPolicy < ApplicationPolicy
   end
 
   def new?
-    author?
+    user.present?
   end
 
   def edit?
@@ -16,7 +16,7 @@ class OperationPolicy < ApplicationPolicy
   end
 
   def create?
-    author?
+    user.present?
   end
 
   def update?
