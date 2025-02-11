@@ -1,5 +1,6 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[ show edit update destroy ]
+  before_action :authorize_operation, except: %i[ new create ]
 
   # GET /operations or /operations.json
   def index
@@ -12,7 +13,8 @@ class OperationsController < ApplicationController
 
   # GET /operations/new
   def new
-    @operation = Operation.new
+    @operation = current_user.operations.build
+    authorize_operation
   end
 
   # GET /operations/1/edit
@@ -22,6 +24,7 @@ class OperationsController < ApplicationController
   # POST /operations or /operations.json
   def create
     @operation = current_user.operations.build(operation_params)
+    authorize_operation
 
     respond_to do |format|
       if @operation.save
@@ -67,5 +70,9 @@ class OperationsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def operation_params
     params.expect(operation: [ :amount, :odate, :description, :category_id ])
+  end
+
+  def authorize_operation
+    authorize(@operation || Operation)
   end
 end
