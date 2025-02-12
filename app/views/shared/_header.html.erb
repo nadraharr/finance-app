@@ -38,7 +38,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-              <%= (current_user.name unless current_user.name.empty?) || current_user.email.split("@")[0] %>
+              <%= (current_user.name if current_user.name.present?) || current_user.email.split("@")[0] %>
             </a>
             <ul
             class="dropdown-menu dropdown-menu-end"

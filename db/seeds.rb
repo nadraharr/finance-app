@@ -7,18 +7,42 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-10.times do
-  Category.find_or_create_by!(
-    name: Faker::Commerce.unique.department,
-    description: Faker::Lorem.sentence,
-  )
+
+admin = User.create!(
+  email: "admin@test.com",
+  password: "password",
+  password_confirmation: "password",
+  # role: "admin"
+)
+
+user = User.create!(
+  email: "user@test.com",
+  password: "password",
+  password_confirmation: "password",
+  # role: "user"
+)
+
+def create_data_for(user)
+  categories = []
+
+  20.times do
+    categories << Category.create!(
+      name: Faker::Commerce.unique.department,
+      description: Faker::Lorem.sentence,
+      user: user,
+    )
+  end
+
+  200.times do
+    Operation.create!(
+      amount: Faker::Commerce.price(range: 5..500),
+      odate: Faker::Time.backward(days: 30, period: :evening),
+      description: Faker::Lorem.sentence,
+      category: categories.sample,
+      user: user,
+    )
+  end
 end
 
-100.times do
-  Operation.find_or_create_by!(
-    amount: Faker::Commerce.price,
-    odate: Faker::Time.backward(days: 14, period: :evening),
-    description: Faker::Lorem.sentence,
-    category_id: Category.pluck(:id).sample,
-  )
-end
+create_data_for(admin)
+create_data_for(user)
