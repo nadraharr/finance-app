@@ -5,20 +5,22 @@
   |
   <%= link_to "New operation", new_operation_path, class: "btn btn-success" %>
 </div>
-<table class="table table-striped table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th>Description</th>
-      <th class="text-center">Amount</th>
-      <th>Category</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @operations.each do |operation| %>
-      <%= render operation %>
-    <% end %>
-  </tbody>
-</table>
+<% if @operations.present? %>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Description</th>
+        <th class="text-center">Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @operations.each do |operation| %>
+        <%= render operation %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <%= paginate @operations %>
