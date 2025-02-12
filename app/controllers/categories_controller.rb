@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = current_user.category.build
+    @category = current_user.categories.build
   end
 
   # GET /categories/1/edit

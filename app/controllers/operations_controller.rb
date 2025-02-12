@@ -14,7 +14,6 @@ class OperationsController < ApplicationController
   # GET /operations/new
   def new
     @operation = current_user.operations.build
-    @categories = current_user.categories
   end
 
   # GET /operations/1/edit

@@ -1,7 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Categories", type: :request do
-  let(:category) { create(:category, name: "Groceries") }
+  let(:user) { create(:user) }
+  let(:category) { create(:category, name: "Groceries", user: user) }
+
+  before do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
   describe "index" do
     it "should visit categories page" do

@@ -1,7 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Operations", type: :request do
-  let(:operation) { create(:operation, description: "Some Payment") }
+  let(:user) { create(:user) }
+  let(:operation) { create(:operation, description: "Some Payment", user: user) }
+
+  before do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
   describe "index" do
     it "should visit operations page" do

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
-      session[:user_id] = user.id
+      sign_in(user)
       redirect_to root_path, notice: "Welcome, #{user.email}!"
     else
       redirect_to new_session_path, notice: "Incorrect email/password."

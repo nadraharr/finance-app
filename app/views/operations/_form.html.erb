@@ -27,7 +27,7 @@
       </div>
       <div class="mb-4">
         <%= form.label :category_id, "Category", class: "form-label" %>
-        <%= form.collection_select :category_id, @categories, :id, :name, { include_blank: "" }, class: "form-select" %>
+        <%= form.collection_select :category_id, current_user.categories, :id, :name, { include_blank: "" }, class: "form-select" %>
       </div>
       <div class="d-grid gap-2">
         <%= form.submit "Save Operation", class: "btn btn-success" %>
