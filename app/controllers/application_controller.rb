@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    redirect_back_or_to root_path, notice: "You are not authorized to perform this action!"
+    redirect_back_or_to root_path, alert: "You are not authorized to perform this action!"
   end
 
   helper_method :current_user

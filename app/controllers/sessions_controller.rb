@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :require_no_authentication, only: [ :new, :create ]
-  before_action :require_authentication, only: [ :destroy ]
+  before_action :require_no_authentication, only: %i[ new create ]
+  before_action :require_authentication, only: %i[ destroy ]
 
   def new
   end
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path, notice: "Welcome, #{user.email}!"
     else
-      redirect_to new_session_path, notice: "Incorrect email/password."
+      redirect_to new_session_path, alert: "Incorrect email/password."
     end
   end
 

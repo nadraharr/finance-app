@@ -1,18 +1,7 @@
 <div class="container d-flex justify-content-center">
   <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
     <%= form_with(model: @user, local: true, class: "needs-validation") do |form| %>
-      <% if @user.errors.any? %>
-        <div class="alert alert-danger">
-          <h4 class="alert-heading">
-            <%= pluralize(@user.errors.count, "error") %> prohibited this operation from being saved:
-          </h4>
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'shared/errors', object: @user %>
       <div class="mb-3">
         <%= form.label :name, class: "form-label" %>
         <%= form.text_field :name, class: "form-control", placeholder: "Enter name" %>
