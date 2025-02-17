@@ -2,7 +2,9 @@
   <td class="col-3"><%= category.name %></td>
   <td class="col-8"><%= category.description %></td>
   <td class="col-1">
-    <%= render "edit", category: category %>
+    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" data-turbo-frame="category-modal-content">
+      <%= link_to "Edit", edit_category_path(category), data: { turbo_method: "post" } %>
+    </button>
     <div class="d-inline-block"> <%= link_to "Delete", category_path(category), class: "btn btn-danger btn-sm ", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></div>
   </td>
 </tr>

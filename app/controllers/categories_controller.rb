@@ -14,6 +14,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   def create
