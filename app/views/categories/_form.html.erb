@@ -2,7 +2,6 @@
   <div class="card " style="width: 100%; border: none" >
     <div id="<%= dom_id(category) %>-errors"></div>
     <%= form_with model: category, class: "needs-validation" do |form| %>
-      <%= render 'shared/errors', object: category %>
       <div class="mb-3">
         <%= form.label :name, class: "form-label" %>
         <%= form.text_field :name, class: "form-control", placeholder: "Enter category name" %>
