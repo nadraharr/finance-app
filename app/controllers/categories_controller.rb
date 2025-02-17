@@ -22,7 +22,10 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: "Category was successfully created."
     else
-      redirect_to categories_path, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { redirect_to categories_path, status: :unprocessable_entity }
+        format.turbo_stream
+      end
     end
   end
 
@@ -30,7 +33,10 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to categories_path, notice: "Category was successfully updated."
     else
-      redirect_to categories_path, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { redirect_to categories_path, status: :unprocessable_entity }
+        format.turbo_stream
+      end
     end
   end
 
