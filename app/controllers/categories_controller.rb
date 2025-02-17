@@ -11,6 +11,9 @@ class CategoriesController < ApplicationController
 
   def new
     @category = current_user.categories.build
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   def edit
