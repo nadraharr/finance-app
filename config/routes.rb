@@ -5,12 +5,7 @@ Rails.application.routes.draw do
   get "reports/generate_report"
   get "main/index"
   resources :operations
-  resources :categories do
-    member do
-      post :new
-      post :edit
-    end
-  end
+  resources :categories
   resources :users
   resource :session, only: [ :new, :create, :destroy ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

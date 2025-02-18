@@ -3,9 +3,9 @@
   <td class="col-8"><%= category.description %></td>
   <td class="col-1">
     <div class="d-inline-block">
-      <%= button_to "Edit", edit_category_path(category),
-          data: { turbo_method: "post", bs_toggle: "modal", bs_target: "#editModal" },
-          class: "btn btn-warning btn-sm d-inline-block" %>
+      <%= button_to "Edit", edit_category_path(category), method: :get,
+        data: { turbo_stream: true, bs_toggle: "modal", bs_target: "#editModal"  },
+        class: "btn btn-warning btn-sm" %>
     </div>
     <%= link_to "Delete", category_path(category),        
         data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
