@@ -1,25 +1,15 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[ edit update destroy ]
   before_action :authorize_category
 
   def index
-    @categories = current_user.categories.page(params[:page])
-  end
-
-  def show
+    @categories = current_user.categories.order(created_at: :desc).page(params[:page])
   end
 
   def new
     @category = current_user.categories.build
-    respond_to do |format|
-      format.turbo_stream
-    end
-  end
 
-  def edit
-    respond_to do |format|
-      format.turbo_stream
-    end
+    render turbo_stream: turbo_stream.update("newModal-content", partial: "form", locals: { category: @category })
   end
 
   def create
@@ -28,21 +18,22 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: "Category was successfully created."
     else
-      respond_to do |format|
-        format.html { redirect_to categories_path, status: :unprocessable_entity }
-        format.turbo_stream
-      end
+      render turbo_stream: turbo_stream.replace("new_category-errors", partial: "shared/errors", locals: { object: @category })
+      head :unprocessable_entity
     end
+  end
+
+  def edit
+    render turbo_stream: turbo_stream.update("editModal-content", partial: "form", locals: { category: @category })
   end
 
   def update
     if @category.update(category_params)
       redirect_to categories_path, notice: "Category was successfully updated."
     else
-      respond_to do |format|
-        format.html { redirect_to categories_path, status: :unprocessable_entity }
-        format.turbo_stream
-      end
+      render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@category)}-errors", partial: "shared/errors",
+                                                                                       locals: { object: @category })
+      head :unprocessable_entity
     end
   end
 
