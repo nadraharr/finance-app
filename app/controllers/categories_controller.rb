@@ -19,7 +19,6 @@ class CategoriesController < ApplicationController
       redirect_to categories_path, notice: "Category was successfully created."
     else
       render turbo_stream: turbo_stream.replace("new_category-errors", partial: "shared/errors", locals: { object: @category })
-      head :unprocessable_entity
     end
   end
 
@@ -33,7 +32,6 @@ class CategoriesController < ApplicationController
     else
       render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@category)}-errors", partial: "shared/errors",
                                                                                        locals: { object: @category })
-      head :unprocessable_entity
     end
   end
 
