@@ -6,9 +6,13 @@
   <td class="col-2"><%= operation.category.name if operation.category %></td>
   <td class="col-2 text-muted"><%= operation.odate %></td>
   <td class="col-1">
-    <%= link_to "Edit", edit_operation_path(operation), class: "btn btn-warning btn-sm" %>
     <div class="d-inline-block">
-      <%= button_to "Delete", operation, class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <%= button_to "Edit", edit_operation_path(operation), method: :get,
+        data: { turbo_stream: true, bs_toggle: "modal", bs_target: "#editModal"  },
+        class: "btn btn-warning btn-sm" %>
     </div>
+    <%= link_to "Delete", operation,        
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+        class: "btn btn-danger btn-sm" %>
   </td>
 </tr>

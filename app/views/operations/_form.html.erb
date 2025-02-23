@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center">
-  <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
-    <%= render 'shared/errors', object: operation %>
-    <%= form_with(model: operation, local: true, class: "needs-validation") do |form| %>
+  <div class="card" style="width: 100%; border: none" >
+    <div id="<%= dom_id(operation) %>-errors"></div>
+    <%= form_with(model: operation, class: "needs-validation") do |form| %>
       <div class="mb-3">
         <%= form.label :amount, class: "form-label" %>
         <%= form.number_field :amount, class: "form-control", placeholder: "Enter amount" %>

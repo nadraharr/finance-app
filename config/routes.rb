@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "main/index"
   resources :operations
   resources :categories, except: [ :show ]
-  resources :users
+  resources :users, except: [ :show ]
   resource :session, only: [ :new, :create, :destroy ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

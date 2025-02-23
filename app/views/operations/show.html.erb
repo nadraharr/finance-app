@@ -1,6 +1,0 @@
-<%= render @operation %>
-<div class="d-flex gap-2 mt-3">
-  <%= link_to "Edit this operation", edit_operation_path(@operation), class: "btn btn-warning" %>
-  <%= button_to "Destroy this operation", @operation, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-  <%= link_to "Back to operations", operations_path, class: "btn btn-secondary" %>
-</div>

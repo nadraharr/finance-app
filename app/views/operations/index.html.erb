@@ -1,8 +1,12 @@
 <% content_for :title, "Operations" %>
+<%= render "modal", title: "New Operation", modal_id: "newModal" %>
+<%= render "modal", title: "Edit Operation", modal_id: "editModal" %>
 <div class="my-3 d-flex align-items-center gap-4">
   <h1>Operations</h1>
   |
-  <%= link_to "New operation", new_operation_path, class: "btn btn-success" %>
+  <%= button_to "New Operation", new_operation_path, method: :get,
+      data: { turbo_stream: true, bs_toggle: "modal", bs_target: "#newModal" },
+      class: "btn btn-success" %>
 </div>
 <% if @operations.present? %>
   <table class="table table-striped table-bordered">
@@ -16,9 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @operations.each do |operation| %>
-        <%= render operation %>
-      <% end %>
+      <%= render @operations %>
     </tbody>
   </table>
 <% end %>
