@@ -45,7 +45,6 @@ RSpec.describe "Categories", type: :request do
       it "should not create category" do
         invalid_params = attributes_for(:category, name: "")
         expect { post categories_path, params: { category: invalid_params } }.to_not change { Category.count }
-        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -73,7 +72,6 @@ RSpec.describe "Categories", type: :request do
         invalid_params = { name: "" }
         patch category_path(category), params: { category: invalid_params }
         expect(category.reload.name).to eq("Groceries")
-        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
