@@ -44,7 +44,7 @@ gem "thruster", require: false
 
 gem "kaminari", "~> 1.2", ">= 1.2.2"
 
-gem "bootstrap", "~> 5.3.3"
+gem "bootstrap", "~> 5.3.5"
 gem "dartsass-rails", "~> 0.5.1"
 
 group :development, :test do
